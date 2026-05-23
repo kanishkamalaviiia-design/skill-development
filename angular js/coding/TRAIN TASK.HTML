@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-app="trainApp">
+<link rel="stylesheet" href="C:\Users\MANOCHITRASUBASH\Desktop\angular js\TRAIN TASK CSS.CSS">
+<head>
+    <title>Train Ticket Booking</title>
+
+    
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script src="app.js"></script>
+</head>
+
+<body ng-controller="trainController">
+
+    <div class="container">
+
+        <h1>Train Ticket Booking</h1>
+
+        <input type="text"
+               ng-model="from"
+               placeholder="From Station">
+
+        <input type="text"
+               ng-model="to"
+               placeholder="To Station">
+
+        <input type="date"
+               ng-model="date">
+
+        <input type="number"
+               ng-model="passengers"
+               placeholder="Passengers">
+
+        <button ng-click="bookTicket()">
+            Book Ticket
+        </button>
+
+        <div class="ticket-box" ng-if="showTicket">
+
+            <h2>Ticket Confirmed</h2>
+
+            <p><b>From:</b> {{from}}</p>
+
+            <p><b>To:</b> {{to}}</p>
+
+            <p><b>Date:</b> {{date}}</p>
+
+            <p><b>Passengers:</b> {{passengers}}</p>
+
+            <p><b>Total Fare:</b> ₹{{fare}}</p>
+
+        </div>
+
+    </div><script>
+    var app = angular.module("trainApp", []);
+
+app.controller("trainController", function($scope){
+
+    $scope.showTicket = false;
+
+    $scope.bookTicket = function(){
+
+        if($scope.from &&
+           $scope.to &&
+           $scope.date &&
+           $scope.passengers){
+
+            
+            $scope.fare = $scope.passengers * 250;
+
+            $scope.showTicket = true;
+        }
+        else{
+            alert("Please fill all details");
+        }
+
+    };
+
+});</script>
+<h2 style="text-align:center; color:darkblue;">
+    Welcome to Train Ticket Booking System
+</h2>
+</body>
+</html>
